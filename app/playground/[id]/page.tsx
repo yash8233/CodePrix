@@ -37,7 +37,6 @@ import WebContainerPreview from "@/modules/webcontainers/components/webcontainer
 import { useWebContainer } from "@/modules/webcontainers/hooks/useWebContainer";
 import {
   AlertCircle,
-  Bot,
   FileText,
   FolderOpen,
   Save,
@@ -48,7 +47,6 @@ import { useParams } from "next/navigation";
 import React, {
   useCallback,
   useEffect,
-  useReducer,
   useRef,
   useState,
 } from "react";
@@ -89,7 +87,7 @@ const MainPlaygroundPage = () => {
     error: containerError,
     instance,
     writeFileSync,
-    // @ts-ignore
+
   } = useWebContainer({ templateData });
 
   const lastSyncedContent = useRef<Map<string, string>>(new Map());
@@ -201,23 +199,27 @@ const MainPlaygroundPage = () => {
           JSON.stringify(latestTemplateData)
         );
 
-        // @ts-ignore
-          const updateFileContent = (items: any[]) =>
-            // @ts-ignore
-          items.map((item) => {
+        const updateFileContent = (items: (TemplateFile | TemplateFolder)[]): (TemplateFile | TemplateFolder)[] => items.map((item) => {
             if ("folderName" in item) {
-              return { ...item, items: updateFileContent(item.items) };
-            } else if (
+              return {
+                ...item,
+                items: updateFileContent(item.items),
+              };
+            }
+
+            if (
               item.filename === fileToSave.filename &&
               item.fileExtension === fileToSave.fileExtension
             ) {
-              return { ...item, content: fileToSave.content };
+              return {
+                ...item,
+                content: fileToSave.content,
+              };
             }
             return item;
           });
-        updatedTemplateData.items = updateFileContent(
-          updatedTemplateData.items
-        );
+
+updatedTemplateData.items = updateFileContent(updatedTemplateData.items);
 
           // Sync with WebContainer
         if (writeFileSync) {

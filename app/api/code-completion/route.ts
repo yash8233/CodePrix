@@ -58,13 +58,17 @@ export async function POST(request: NextRequest) {
         generatedAt: new Date().toISOString(),
       },
     });
-  } catch (error: any) {
-    console.error("Context analysis error:", error);
-    return NextResponse.json(
-      { error: "Internal server error", message: error.message },
-      { status: 500 }
-    );
-  }
+  } catch (error: unknown) {
+  console.error("Context analysis error:", error);
+
+  return NextResponse.json(
+    {
+      error: "Internal server error",
+      message: error instanceof Error ? error.message : "Unknown error",
+    },
+    { status: 500 }
+  );
+}
 }
 
 function analyzeCodeContext(
@@ -146,7 +150,7 @@ async function generateSuggestion(prompt: string): Promise<string> {
         model: "codellama:latest",
         prompt,
         stream: false,
-        option: {
+        options: {
           temperature: 0.7,
           max_tokens: 300,
         },
@@ -157,7 +161,7 @@ async function generateSuggestion(prompt: string): Promise<string> {
       throw new Error(`AI service error: ${response.statusText}`)
     }
 
-      const data = await response.json()
+      const data: { response: string } = await response.json();
     let suggestion = data.response
 
      // Clean up the suggestion
@@ -167,7 +171,7 @@ async function generateSuggestion(prompt: string): Promise<string> {
     }
 
     return suggestion
-  } catch (error) {
+  } catch (error : unknown) {
       console.error("AI generation error:", error)
     return "// AI suggestion unavailable"
   }
