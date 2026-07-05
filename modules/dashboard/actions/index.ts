@@ -145,9 +145,7 @@ export const duplicateProjectById = async (id: string) => {
         // todo: add template files
       },
     });
-
     revalidatePath("/dashboard");
-    return duplicatedPlayground;
   } catch (error) {
     console.error("Error duplicating project:", error);
   }
