@@ -52,6 +52,16 @@ const playground = await db.playground.findUnique({
     console.log("templatePath:", templatePath);
     console.log("inputPath:", inputPath);
 
+    // 👇 ADD THIS
+    const exists = await fs
+      .access(inputPath)
+      .then(() => true)
+      .catch(() => false);
+
+    console.log("Exists:", exists);
+
+    const rootFiles = await fs.readdir(process.cwd());
+    console.log("Root files:", rootFiles);
 
     await saveTemplateStructureToJson(inputPath , outputFile);
     const result = await readTemplateStructureFromJson(outputFile);
