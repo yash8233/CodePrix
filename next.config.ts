@@ -39,6 +39,12 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+
+  experimental: {
+    outputFileTracingIncludes: {
+      "/*": ["./vibecode-starters/**/*"],
+    },
+  },
 };
 
 export default nextConfig;
