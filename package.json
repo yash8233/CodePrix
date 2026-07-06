@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "prisma generate && next build",
+    "generate-templates": "tsx scripts/generate-templates.ts",
+    "build": "prisma generate && npm run generate-templates && next build",
     "start": "next start",
     "lint": "next lint",
     "postinstall": "npx prisma generate"
@@ -83,6 +84,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.4.5",
     "tailwindcss": "^4",
+    "tsx": "^4.23.0",
     "tw-animate-css": "^1.3.6",
     "typescript": "^5"
   }
