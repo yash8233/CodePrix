@@ -1,56 +1,80 @@
-
 <div align="center">
+
+# 🚀 CodePrix
+
+### AI-Powered Cloud IDE built with Next.js, WebContainers & Ollama
+
+<p align="center">
+  <a href="https://code-prix.vercel.app">
+    <img src="public/vibe-code-editor-thumbnaail.svg" alt="CodePrix Banner" width="900">
+  </a>
+</p>
+
+<p align="center">
+
+<a href="https://code-prix.vercel.app">🌐 Live Demo</a> •
+<a href="https://github.com/yash8233/CodePrix/issues">Report Bug</a> •
+<a href="https://github.com/yash8233/CodePrix/issues">Request Feature</a>
+
+</p>
+
+<p align="center">
+
+<img src="https://img.shields.io/github/stars/yash8233/CodePrix?style=for-the-badge" />
+<img src="https://img.shields.io/github/forks/yash8233/CodePrix?style=for-the-badge" />
+<img src="https://img.shields.io/github/license/yash8233/CodePrix?style=for-the-badge" />
+<img src="https://img.shields.io/github/issues/yash8233/CodePrix?style=for-the-badge" />
+
+</p>
+
+</div>
 
 ---
 
-# ✨ Features
+## 📖 About
 
-## 🤖 AI Powered Development
+**CodePrix** is a browser-based AI-powered development environment that combines a modern code editor, browser runtime, AI code assistance, and project management into one seamless experience.
+
+Built with **Next.js 15**, **Monaco Editor**, **WebContainers**, **Prisma**, **MongoDB**, and **Ollama**, CodePrix enables developers to build and preview applications directly inside the browser without local setup.
+
+---
+
+## ✨ Features
+
+### 🤖 AI Features
 
 - AI Code Completion
 - AI Chat Assistant
-- Context-aware Suggestions
+- Context-Aware Suggestions
 - Inline Code Completion
-- Intelligent Code Generation
-- Local AI using Ollama
+- Local LLM Integration using Ollama
 
----
-
-## 💻 Browser IDE
+### 💻 IDE Features
 
 - Monaco Editor
-- Multi-file editing
-- Multiple open tabs
+- Multi-file Editing
 - File Explorer
 - Folder Management
-- File Renaming
-- File Creation
-- File Deletion
-- Save & Save All support
+- Create / Rename / Delete Files
+- Save & Save All
 - Keyboard Shortcuts
 
----
+### ⚡ Runtime
 
-## ⚡ Runtime
-
-- WebContainers Integration
-- Browser-based execution
+- Browser-based Execution
+- StackBlitz WebContainers
 - Live Preview
 - Embedded Terminal
 - Real-time File Synchronization
 
----
-
-## 🔐 Authentication
+### 🔐 Authentication
 
 - Google OAuth
 - GitHub OAuth
-- Secure JWT Sessions
-- NextAuth Authentication
+- JWT Sessions
+- NextAuth v5
 
----
-
-## 📦 Supported Templates
+### 📦 Project Templates
 
 - React
 - Next.js
@@ -59,40 +83,65 @@
 - Hono
 - Angular
 
----
+### 🎨 User Experience
 
-## 🎨 User Experience
-
-- Responsive UI
-- Dark / Light Mode
-- Modern Dashboard
-- Project Management
-- Favorite Projects
+- Responsive Design
+- Dark / Light Theme
+- Project Dashboard
+- Favorites
 - Fast Navigation
 
 ---
 
-# 🛠 Tech Stack
+## 🏗 Architecture
 
-| Category         | Technologies             |
-| ---------------- | ------------------------ |
-| Framework        | Next.js 15 (App Router)  |
-| Language         | TypeScript               |
-| Styling          | Tailwind CSS, Shadcn UI  |
-| Authentication   | NextAuth v5              |
-| Database         | MongoDB + Prisma         |
-| Editor           | Monaco Editor            |
-| Runtime          | StackBlitz WebContainers |
-| Terminal         | xterm.js                 |
-| AI               | Ollama                   |
-| State Management | Zustand                  |
-| Icons            | Lucide React             |
+```text
+                Next.js App Router
+                        │
+        ┌───────────────┼───────────────┐
+        │               │               │
+        ▼               ▼               ▼
+   NextAuth         Prisma ORM     WebContainers
+        │               │               │
+        ▼               ▼               ▼
+ Google/GitHub      MongoDB      Browser Runtime
+        │
+        ▼
+ User Authentication
+
+               ▼
+
+      Ollama (Local LLM)
+
+               ▼
+
+ AI Chat + Code Completion
+```
 
 ---
 
-# 📂 Project Structure
+## 🛠 Tech Stack
 
-```
+| Category | Technology |
+|----------|------------|
+| Framework | Next.js 15 |
+| Language | TypeScript |
+| Styling | Tailwind CSS |
+| UI Library | ShadCN UI |
+| Authentication | NextAuth |
+| Database | MongoDB |
+| ORM | Prisma |
+| Editor | Monaco Editor |
+| Runtime | StackBlitz WebContainers |
+| AI | Ollama |
+| Terminal | xterm.js |
+| State Management | Zustand |
+
+---
+
+## 📂 Folder Structure
+
+```text
 CodePrix
 │
 ├── app
@@ -112,7 +161,7 @@ CodePrix
 
 # 🚀 Getting Started
 
-## 1. Clone Repository
+## Clone Repository
 
 ```bash
 git clone https://github.com/yash8233/CodePrix.git
@@ -122,7 +171,7 @@ cd CodePrix
 
 ---
 
-## 2. Install Dependencies
+## Install Dependencies
 
 ```bash
 npm install
@@ -130,7 +179,7 @@ npm install
 
 ---
 
-## 3. Generate Template Files
+## Generate Template Files
 
 ```bash
 npm run generate-templates
@@ -138,7 +187,7 @@ npm run generate-templates
 
 ---
 
-## 4. Configure Environment Variables
+## Configure Environment Variables
 
 Create a `.env.local`
 
@@ -156,7 +205,7 @@ AUTH_GOOGLE_SECRET=
 
 ---
 
-## 5. Generate Prisma Client
+## Generate Prisma Client
 
 ```bash
 npx prisma generate
@@ -164,9 +213,9 @@ npx prisma generate
 
 ---
 
-## 6. Run Ollama
+## Install Ollama
 
-Install Ollama
+Download Ollama
 
 https://ollama.com
 
@@ -176,7 +225,7 @@ Pull a model
 ollama pull codellama
 ```
 
-Run it
+Run the model
 
 ```bash
 ollama run codellama
@@ -184,13 +233,13 @@ ollama run codellama
 
 ---
 
-## 7. Start Development Server
+## Start Development Server
 
 ```bash
 npm run dev
 ```
 
-Application
+Open
 
 ```
 http://localhost:3000
@@ -198,100 +247,101 @@ http://localhost:3000
 
 ---
 
-# 🖥 Keyboard Shortcuts
+## ⌨ Keyboard Shortcuts
 
-| Shortcut         | Action                |
-| ---------------- | --------------------- |
-| Ctrl + S         | Save File             |
-| Ctrl + Shift + S | Save All              |
-| Ctrl + Space     | Trigger AI Completion |
-| Tab              | Accept Suggestion     |
+| Shortcut | Action |
+|----------|--------|
+| Ctrl + S | Save Current File |
+| Ctrl + Shift + S | Save All Files |
+| Ctrl + Space | Trigger AI Suggestion |
+| Tab | Accept Suggestion |
 
 ---
 
-# 🚀 Deployment
+## 🚀 Deployment
 
-Deploy effortlessly on **Vercel**
+Deploy on **Vercel**
+
+Required Environment Variables
+
+```env
+DATABASE_URL=
+
+AUTH_SECRET=
+
+AUTH_GITHUB_ID=
+AUTH_GITHUB_SECRET=
+
+AUTH_GOOGLE_ID=
+AUTH_GOOGLE_SECRET=
+```
+
+Build
 
 ```bash
 npm run build
 ```
 
-Required Environment Variables
-
-```
-DATABASE_URL
-
-AUTH_SECRET
-
-AUTH_GITHUB_ID
-AUTH_GITHUB_SECRET
-
-AUTH_GOOGLE_ID
-AUTH_GOOGLE_SECRET
-```
-
 ---
 
-# 📸 Screenshots
+## 📸 Screenshots
 
 ### Dashboard
 
-> Add Screenshot
+> Add screenshot here
 
 ---
 
 ### Playground
 
-> Add Screenshot
+> Add screenshot here
 
 ---
 
 ### AI Assistant
 
-> Add Screenshot
+> Add screenshot here
 
 ---
 
 ### Live Preview
 
-> Add Screenshot
+> Add screenshot here
 
 ---
 
-# 🧩 Future Improvements
+## 🗺 Roadmap
 
 - AI Agent Mode
-- GitHub Repository Import
-- Live Collaboration
-- Multi-user Editing
-- Docker Runtime
-- Custom Templates
-- Extension Marketplace
-- AI Bug Detection
-- AI Refactoring
 - Git Integration
+- Live Collaboration
+- Docker Runtime
+- Extension Marketplace
+- Custom Templates
+- AI Refactoring
+- AI Bug Detection
 
 ---
 
-# 🤝 Contributing
+## 🤝 Contributing
 
-Contributions are always welcome.
+Contributions are welcome.
 
 1. Fork the repository
+
 2. Create a feature branch
 
 ```bash
 git checkout -b feature/amazing-feature
 ```
 
-3. Commit changes
+3. Commit your changes
 
 ```bash
 git commit -m "Add amazing feature"
 ```
 
-4. Push branch
+4. Push to GitHub
 
 ```bash
 git push origin feature/amazing-feature
@@ -301,40 +351,26 @@ git push origin feature/amazing-feature
 
 ---
 
-# ⭐ Support
+## 📜 License
 
-If you like this project,
-
-⭐ Star the repository
-
-🐛 Report issues
-
-💡 Suggest new features
+This project is licensed under the MIT License.
 
 ---
 
-# 📜 License
-
-Distributed under the MIT License.
-
----
-
-# 👨‍💻 Author
+## 👨‍💻 Author
 
 **Yash Gupta**
 
-GitHub
+GitHub: https://github.com/yash8233
 
-https://github.com/yash8233
-
-LinkedIn
-
-(Add your LinkedIn)
-
-Portfolio
-
-(Add your Portfolio)
+Live Project: https://code-prix.vercel.app
 
 ---
 
 <div align="center">
+
+### ⭐ If you found this project useful, consider giving it a star.
+
+Made with ❤️ using Next.js, Prisma, Monaco Editor, WebContainers & Ollama.
+
+</div>
