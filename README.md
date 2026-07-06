@@ -76,12 +76,26 @@ Built with **Next.js 15**, **Monaco Editor**, **WebContainers**, **Prisma**, **M
 
 ### 📦 Project Templates
 
+CodePrix ships with production-ready starter templates that allow you to start coding instantly without any setup.
+
+Supported templates:
+
 - React
 - Next.js
 - Express
 - Vue
 - Hono
 - Angular
+
+### 📚 Template Source
+
+The starter templates are based on the excellent **StackBlitz Starters** project.
+
+Repository:
+
+https://github.com/stackblitz/starters
+
+You can download additional templates from the repository or customize the bundled templates inside the `vibecode-starters` directory.
 
 ### 🎨 User Experience
 
