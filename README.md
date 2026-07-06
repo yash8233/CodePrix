@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="https://code-prix.vercel.app">
-    <img src="public/vibe-code-editor-thumbnaail.svg" alt="CodePrix Banner" width="900">
+    <img src="public/logo.svg" alt="CodePrix Banner" width="90">
   </a>
 </p>
 
