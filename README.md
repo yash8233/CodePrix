@@ -1,122 +1,340 @@
-# 🧠 CodePrix Editor – AI-Powered Web IDE
 
-![Vibecode Editor Thumbnail](public/vibe-code-editor-thumbnaail.svg)
-
-**CodePrix Editor** is a blazing-fast, AI-integrated web IDE built entirely in the browser using **Next.js App Router**, **WebContainers**, **Monaco Editor**, and **local LLMs via Ollama**. It offers real-time code execution, an AI-powered chat assistant, and support for multiple tech stacks — all wrapped in a stunning developer-first UI.
+<div align="center">
 
 ---
 
-## 🚀 Features
+# ✨ Features
 
-- 🔐 **OAuth Login with NextAuth** – Supports Google & GitHub login.
-- 🎨 **Modern UI** – Built with TailwindCSS & ShadCN UI.
-- 🌗 **Dark/Light Mode** – Seamlessly toggle between themes.
-- 🧱 **Project Templates** – Choose from React, Next.js, Express, Hono, Vue, or Angular.
-- 🗂️ **Custom File Explorer** – Create, rename, delete, and manage files/folders easily.
-- 🖊️ **Enhanced Monaco Editor** – Syntax highlighting, formatting, keybindings, and AI autocomplete.
-- 💡 **AI Suggestions with Ollama** – Local models give you code completion on `Ctrl + Space` or double `Enter`. Accept with `Tab`.
-- ⚙️ **WebContainers Integration** – Instantly run frontend/backend apps right in the browser.
-- 💻 **Terminal with xterm.js** – Fully interactive embedded terminal experience.
-- 🤖 **AI Chat Assistant** – Share files with the AI and get help, refactors, or explanations.
+## 🤖 AI Powered Development
+
+- AI Code Completion
+- AI Chat Assistant
+- Context-aware Suggestions
+- Inline Code Completion
+- Intelligent Code Generation
+- Local AI using Ollama
 
 ---
 
-## 🧱 Tech Stack
+## 💻 Browser IDE
 
-| Layer         | Technology                               |
-| ------------- | ---------------------------------------- |
-| Framework     | Next.js 15 (App Router)                  |
-| Styling       | TailwindCSS, ShadCN UI                   |
-| Language      | TypeScript                               |
-| Auth          | NextAuth (Google + GitHub OAuth)         |
-| Editor        | Monaco Editor                            |
-| AI Suggestion | Ollama (LLMs running locally via Docker) |
-| Runtime       | WebContainers                            |
-| Terminal      | xterm.js                                 |
-| Database      | MongoDB (via DATABASE_URL)               |
+- Monaco Editor
+- Multi-file editing
+- Multiple open tabs
+- File Explorer
+- Folder Management
+- File Renaming
+- File Creation
+- File Deletion
+- Save & Save All support
+- Keyboard Shortcuts
 
 ---
 
-## 🛠️ Getting Started
+## ⚡ Runtime
 
-### 1. Clone the Repo
+- WebContainers Integration
+- Browser-based execution
+- Live Preview
+- Embedded Terminal
+- Real-time File Synchronization
 
-```bash
-git clone https://github.com/your-username/vibecode-editor.git
-cd vibecode-editor
+---
+
+## 🔐 Authentication
+
+- Google OAuth
+- GitHub OAuth
+- Secure JWT Sessions
+- NextAuth Authentication
+
+---
+
+## 📦 Supported Templates
+
+- React
+- Next.js
+- Express
+- Vue
+- Hono
+- Angular
+
+---
+
+## 🎨 User Experience
+
+- Responsive UI
+- Dark / Light Mode
+- Modern Dashboard
+- Project Management
+- Favorite Projects
+- Fast Navigation
+
+---
+
+# 🛠 Tech Stack
+
+| Category         | Technologies             |
+| ---------------- | ------------------------ |
+| Framework        | Next.js 15 (App Router)  |
+| Language         | TypeScript               |
+| Styling          | Tailwind CSS, Shadcn UI  |
+| Authentication   | NextAuth v5              |
+| Database         | MongoDB + Prisma         |
+| Editor           | Monaco Editor            |
+| Runtime          | StackBlitz WebContainers |
+| Terminal         | xterm.js                 |
+| AI               | Ollama                   |
+| State Management | Zustand                  |
+| Icons            | Lucide React             |
+
+---
+
+# 📂 Project Structure
+
+```
+CodePrix
+│
+├── app
+├── components
+├── hooks
+├── lib
+├── modules
+├── prisma
+├── public
+├── scripts
+├── vibecode-starters
+├── package.json
+└── README.md
 ```
 
-### 2. Install Dependencies
+---
+
+# 🚀 Getting Started
+
+## 1. Clone Repository
+
+```bash
+git clone https://github.com/yash8233/CodePrix.git
+
+cd CodePrix
+```
+
+---
+
+## 2. Install Dependencies
 
 ```bash
 npm install
 ```
 
-### 3. Set Up Environment Variables
+---
 
-Create a `.env.local` file using the template:
+## 3. Generate Template Files
 
 ```bash
-cp .env.example .env.local
+npm run generate-templates
 ```
 
-Then, fill in your credentials:
+---
+
+## 4. Configure Environment Variables
+
+Create a `.env.local`
 
 ```env
-AUTH_SECRET=your_auth_secret
-AUTH_GOOGLE_ID=your_google_client_id
-AUTH_GOOGLE_SECRET=your_google_secret
-AUTH_GITHUB_ID=your_github_client_id
-AUTH_GITHUB_SECRET=your_github_secret
-DATABASE_URL=your_mongodb_connection_string
-NEXTAUTH_URL=http://localhost:3000
+DATABASE_URL=
+
+AUTH_SECRET=
+
+AUTH_GITHUB_ID=
+AUTH_GITHUB_SECRET=
+
+AUTH_GOOGLE_ID=
+AUTH_GOOGLE_SECRET=
 ```
 
-### 4. Start Local Ollama Model
+---
 
-Make sure [Ollama](https://ollama.com/) and Docker are installed, then run:
+## 5. Generate Prisma Client
+
+```bash
+npx prisma generate
+```
+
+---
+
+## 6. Run Ollama
+
+Install Ollama
+
+https://ollama.com
+
+Pull a model
+
+```bash
+ollama pull codellama
+```
+
+Run it
 
 ```bash
 ollama run codellama
 ```
 
-Or use your preferred model that supports code generation.
+---
 
-### 5. Run the Development Server
+## 7. Start Development Server
 
 ```bash
 npm run dev
 ```
 
-Visit `http://localhost:3000` in your browser.
-
----
-
-## 🎯 Keyboard Shortcuts
-
-* `Ctrl + Space` or `Double Enter`: Trigger AI suggestions
-* `Tab`: Accept AI suggestion
-* `/`: Open Command Palette (if implemented)
-
----
-
----
-
-## 📄 License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
-
-## 🙏 Acknowledgements
-
-* [Monaco Editor](https://microsoft.github.io/monaco-editor/)
-* [Ollama](https://ollama.com/) – for offline LLMs
-* [WebContainers](https://webcontainers.io/)
-* [xterm.js](https://xtermjs.org/)
-* [NextAuth.js](https://next-auth.js.org/)
+Application
 
 ```
+http://localhost:3000
+```
+
+---
+
+# 🖥 Keyboard Shortcuts
+
+| Shortcut         | Action                |
+| ---------------- | --------------------- |
+| Ctrl + S         | Save File             |
+| Ctrl + Shift + S | Save All              |
+| Ctrl + Space     | Trigger AI Completion |
+| Tab              | Accept Suggestion     |
+
+---
+
+# 🚀 Deployment
+
+Deploy effortlessly on **Vercel**
+
+```bash
+npm run build
+```
+
+Required Environment Variables
 
 ```
-# CodePrix
+DATABASE_URL
+
+AUTH_SECRET
+
+AUTH_GITHUB_ID
+AUTH_GITHUB_SECRET
+
+AUTH_GOOGLE_ID
+AUTH_GOOGLE_SECRET
+```
+
+---
+
+# 📸 Screenshots
+
+### Dashboard
+
+> Add Screenshot
+
+---
+
+### Playground
+
+> Add Screenshot
+
+---
+
+### AI Assistant
+
+> Add Screenshot
+
+---
+
+### Live Preview
+
+> Add Screenshot
+
+---
+
+# 🧩 Future Improvements
+
+- AI Agent Mode
+- GitHub Repository Import
+- Live Collaboration
+- Multi-user Editing
+- Docker Runtime
+- Custom Templates
+- Extension Marketplace
+- AI Bug Detection
+- AI Refactoring
+- Git Integration
+
+---
+
+# 🤝 Contributing
+
+Contributions are always welcome.
+
+1. Fork the repository
+2. Create a feature branch
+
+```bash
+git checkout -b feature/amazing-feature
+```
+
+3. Commit changes
+
+```bash
+git commit -m "Add amazing feature"
+```
+
+4. Push branch
+
+```bash
+git push origin feature/amazing-feature
+```
+
+5. Open a Pull Request
+
+---
+
+# ⭐ Support
+
+If you like this project,
+
+⭐ Star the repository
+
+🐛 Report issues
+
+💡 Suggest new features
+
+---
+
+# 📜 License
+
+Distributed under the MIT License.
+
+---
+
+# 👨‍💻 Author
+
+**Yash Gupta**
+
+GitHub
+
+https://github.com/yash8233
+
+LinkedIn
+
+(Add your LinkedIn)
+
+Portfolio
+
+(Add your Portfolio)
+
+---
+
+<div align="center">
