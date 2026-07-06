@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { WebContainer } from "@webcontainer/api";
+import type { WebContainer } from "@webcontainer/api";
 import { TemplateFolder } from "@/modules/playground/lib/path-to-json";
 
 interface UseWebContainerProps {
@@ -19,23 +19,33 @@ export const useWebContainer = ({
   templateData,
 }: UseWebContainerProps): UseWebContaierReturn => {
   const [serverUrl, setServerUrl] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [instance, setInstance] = useState<WebContainer | null>(null);
 
   useEffect(() => {
     let mounted = true;
+    let wc: WebContainer | null = null;
 
     async function initializeWebContainer() {
+      // Don't run on server
+      if (typeof window === "undefined") return;
+
       try {
-        const webcontainerInstance = await WebContainer.boot();
+        const { WebContainer } = await import("@webcontainer/api");
 
-        if (!mounted) return;
+        wc = await WebContainer.boot();
 
-        setInstance(webcontainerInstance);
+        if (!mounted) {
+          wc.teardown();
+          return;
+        }
+
+        setInstance(wc);
         setIsLoading(false);
       } catch (error) {
         console.error("Failed to initialize WebContainer:", error);
+
         if (mounted) {
           setError(
             error instanceof Error
@@ -51,44 +61,42 @@ export const useWebContainer = ({
 
     return () => {
       mounted = false;
-      if (instance) {
-        instance.teardown();
-      }
+      wc?.teardown();
     };
   }, []);
 
   const writeFileSync = useCallback(
-    async (path: string, content: string): Promise<void> => {
+    async (path: string, content: string) => {
       if (!instance) {
         throw new Error("WebContainer instance is not available");
       }
 
-      try {
-        const pathParts = path.split("/");
-        const folderPath = pathParts.slice(0, -1).join("/");
+      const parts = path.split("/");
+      const folder = parts.slice(0, -1).join("/");
 
-        if (folderPath) {
-          await instance.fs.mkdir(folderPath, { recursive: true }); // Create folder structure recursively
-        }
-
-        await instance.fs.writeFile(path, content);
-      } catch (err) {
-        const errorMessage =
-          err instanceof Error ? err.message : "Failed to write file";
-        console.error(`Failed to write file at ${path}:`, err);
-        throw new Error(`Failed to write file at ${path}: ${errorMessage}`);
+      if (folder) {
+        await instance.fs.mkdir(folder, { recursive: true });
       }
+
+      await instance.fs.writeFile(path, content);
     },
     [instance]
   );
 
-  const destory = useCallback(()=>{
-    if(instance){
-        instance.teardown()
-        setInstance(null);
-        setServerUrl(null)
+  const destory = useCallback(() => {
+    if (instance) {
+      instance.teardown();
+      setInstance(null);
+      setServerUrl(null);
     }
-  },[instance])
+  }, [instance]);
 
-  return {serverUrl , isLoading , error , instance , writeFileSync , destory}
+  return {
+    serverUrl,
+    isLoading,
+    error,
+    instance,
+    writeFileSync,
+    destory,
+  };
 };

@@ -46,7 +46,12 @@ const playground = await db.playground.findUnique({
 
   try {
     const inputPath = path.join(process.cwd() , templatePath);
-    const outputFile = path.join(process.cwd() , `output/${templateKey}.json`);
+    const outputFile = path.join(process.cwd(), `output/${templateKey}.json`);
+    
+    console.log("cwd:", process.cwd());
+    console.log("templatePath:", templatePath);
+    console.log("inputPath:", inputPath);
+
 
     await saveTemplateStructureToJson(inputPath , outputFile);
     const result = await readTemplateStructureFromJson(outputFile);
